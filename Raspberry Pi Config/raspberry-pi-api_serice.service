@@ -1,0 +1,17 @@
+[Unit]
+Description=ASP.NET Core 3.1 App - Raspberry Pi API
+
+[Service]
+WorkingDirectory=/web/dotnet/
+ExecStart=/home/pi/dotnet-arm32/dotnet /web/dotnet/RaspberryPiAPI.dll 
+Restart=always
+# Restart service after 1 seconds if the dotnet service crashes:
+RestartSec=1
+KillSignal=SIGINT
+SyslogIdentifier=dotnet-empower
+User=pi
+Environment=ASPNETCORE_ENVIRONMENT=Production
+Environment=DOTNET_PRINT_TELEMETRY_MESSAGE=false
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,11 @@
+Dette er Configurations filerne til vores Raspberry Pi 
+Der køre vores kommunikation mellem vores sensors og vores bus system API
+
+default : Nginx Web Server config til en proxy til vores Raspberry PI API
+dhcpcd.conf : DHCPCD opsætning af et inteface der køre med dhcp protocol
+dnsmasq.conf : DNAMASQ opsætning til at køre vores dhcp
+hostapd.conf : opsætning af vores wifi netværk/hotspot
+interfaces: opsæting af vores interfaces 
+raspberry-pi-api_serice.service : service op sæting til at køre vores Raspberry PI API
+web.config : opsæting til vores Raspberry PI API 
+wpa_supplicant.conf : opsætning til vores WiFi forbindelse
