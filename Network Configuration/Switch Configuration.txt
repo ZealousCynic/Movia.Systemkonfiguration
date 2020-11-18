@@ -1,0 +1,162 @@
+service password-encryption
+
+hostname Switch1
+
+enable secret Pa$$w0rd
+
+username alex password Pa$$w0rd
+username kasper password Pa$$w0rd
+username xi password Pa$$w0rd
+username mathias password Pa$$w0rd
+
+interface GigabitEthernet0/1
+ switchport trunk native vlan 10
+ switchport mode trunk
+
+interface FastEthernet0/1
+ switchport access vlan 6
+ switchport mode access
+ 
+interface FastEthernet0/2
+ switchport access vlan 6
+ switchport mode access
+
+interface FastEthernet0/3
+ switchport access vlan 6
+ switchport mode access
+
+interface FastEthernet0/4
+ switchport access vlan 10
+ switchport mode access
+
+interface FastEthernet0/5
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/6
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/7
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/8
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/9
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/10
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/11
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/12
+ description ###Access To VLAN Employee###
+ switchport access vlan 4
+ switchport mode access
+
+interface FastEthernet0/13
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/14
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/15
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/16
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/17
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/18
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/19
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/20
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/21
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/22
+ description ###Access To VLAN Administration###
+ switchport access vlan 5
+ switchport mode access
+
+interface FastEthernet0/23
+ description ###Access To Management Servers###
+ switchport access vlan 10
+ switchport mode access
+
+interface FastEthernet0/24
+ description ###Access To Management Servers###
+ switchport access vlan 10
+ switchport mode access
+
+interface Vlan1
+ no ip address
+ shutdown
+
+interface Vlan4
+ description ###Employee###
+ 
+
+interface Vlan5
+ description ###Administration###
+ 
+
+interface Vlan6
+ description ###Sensor###
+ 
+
+interface Vlan10
+ description ###Management###
+ ip address 192.168.10.51 255.255.255.0
+
+line con 0
+ logging synchronous
+ login local
+line vty 0 4
+ password 7 12290453561C5C162E
+ login local
+ transport input ssh
+line vty 5 15
+ login
+
+end

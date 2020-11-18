@@ -1,0 +1,82 @@
+hostname Router1
+
+enable secret Pa$$w0rd
+
+username alex password Pa$$w0rd
+username kasper password Pa$$w0rd
+username xi password Pa$$w0rd
+username mathias password Pa$$w0rd
+
+interface gigabitethernet0/0
+ description ####link to switch1 inside our network!!!####
+ no ip address
+ ip nat inside
+ ip virtual-reassembly in
+ duplex  auto
+ speed auto
+ no shutdown
+ 
+
+interface gigabitethernet0/0.10
+ description ####link to vlan 10 management and server ####
+ encapsulation dot1q 10 native
+ ip address 192.168.10.50 255.255.255.0
+ ip helper-address 192.168.10.155
+ ip nat inside
+ ip virtual-reassembly in
+
+interface gigabitethernet0/0.4
+ description ####link to vlan 4 employee our network####
+ encapsulation dot1q 4
+ ip address 192.168.4.50 255.255.255.0
+ ip helper-address 192.168.10.155
+ ip nat inside
+ ip virtual-reassembly in
+
+interface gigabitethernet0/0.5
+ description ####link to vlan 5 administration our network####
+ encapsulation dot1q 5
+ ip address 192.168.5.50 255.255.255.0
+ ip helper-address 192.168.10.155
+ ip nat inside
+ ip virtual-reassembly in
+
+interface gigabitethernet0/1
+ description ####link to the outside school network nat inside!!!####
+ ip address dhcp
+ ip nat outside
+ ip virtual-reassembly in
+ duplex auto
+ speed auto
+ no shutdown
+
+interface serial0/0/0
+ no ip address
+ shutdown
+ clock rate 2000000
+
+interface serial0/0/1
+ no ip address
+ shutdown
+ clock rate 2000000
+
+ip nat inside source list 100 interface gigabitethernet0/1 overload
+ip route 0.0.0.0 0.0.0.0 gigabitethernet0/1 dhcp
+
+access-list 100 permit ip 192.168.0.0 0.0.255.255 any
+
+line con 0
+ logging synchronous
+ login local
+line aux 0
+line 2
+ no activation-character
+ no exec
+ transport preferred none
+ transport output pad telnet rlogin lapb-ta mop udptn v120 ssh
+ stopbits 1
+
+line vty 0 4
+ password Pa$$w0rd
+ login local
+ transport input ssh
